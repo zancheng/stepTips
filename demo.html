@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+    <link rel="stylesheet" href="steps.css">
+    <script src="stepTips.js"></script>
+    <style>
+        #step1 {
+            width: 200px;
+            height: 100px;
+            background: aqua;
+            margin-left: 50px;;
+            margin-top: 1050px;
+        }
+        .bg-tomato {
+            background-color: #4427ff;
+            width: 100px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-tomato" id="step3">大声道撒</div>
+    <div id="step1">
+        <h1>标题</h1>
+        <p>动可按实际殴打司机哦啊激动啊司机</p>
+    </div>
+    <div id="step2">
+        <h1>标题2</h1>
+        <p>动可按实际殴打司机哦啊激动啊司机</p>
+    </div>
+    <ol id="stepsTips">
+        <li data-position="top" data-bind-id="step1">
+            <h1>第一步</h1>
+            <p>先点击...</p>
+        </li>
+        <li data-position="top" data-bind-id="step2">
+            <h1>第二步</h1>
+            <p>然后...</p>
+        </li>
+        <li data-position="bottom" data-bind-id="step3">
+            <h1>第3步</h1>
+            <p>然后...</p>
+        </li>
+    </ol>
+<script>
+    steps.bind({
+        el: '#stepsTips',
+    }, function (e) {
+        console.log(e);
+    }, {
+        color: 'blue'
+    })
+</script>
+</body>
+</html>

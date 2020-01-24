@@ -1,0 +1,44 @@
+.body-no-scroll {
+    overflow: hidden;
+}
+.steps-hidden {
+    visibility: hidden;
+}
+.steps-parent {
+    position: absolute;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, .7);
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.steps-mask {
+    position: absolute;
+    box-shadow: 0 0 10px 9999px rgba(0, 0, 0, .8);
+    border: 2px dashed tomato;
+    box-sizing: border-box;
+}
+.steps-no-tips {
+    padding: 0;
+    margin: 0;
+    background-color: #00c2ff;
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    line-height: 1.5;
+    text-align: center;
+    border: none;
+    position: absolute;
+    left: 0;
+}
+.steps-next {
+    padding: 0;
+    margin: 0;
+    background-color: #00c2ff;
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    line-height: 1.5;
+    text-align: center;
+    border: none;
+}
