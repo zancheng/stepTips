@@ -43,9 +43,10 @@
             let speed = (scrollTop - now) / 10;
             speed = speed < 0 ? Math.ceil(speed) : Math.floor(speed);
             scrollToEl(el);
-            if(document.documentElement.scrollTop === scrollTop || speed === 0) {
+            if(now === scrollTop || speed === 0) {
                 clearTimeout(timer);
             }
+            document.body.scrollTop += speed;
             document.documentElement.scrollTop += speed;
         }, 25)
     }
