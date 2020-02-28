@@ -1,8 +1,8 @@
 /**
  * 步骤提示插架 steps
  * Author: chengzan
- * CreateTime: 2020-1-23 17:10
- * Version: 1.0.001
+ * CreateTime: 2020-2-28 10:41
+ * Version: 1.0.002
  * */
 ;(function (global, fn ,plugin) {
     global[plugin] = fn.call(global);
@@ -39,7 +39,7 @@
             clearTimeout(timer);
         }
         timer = setTimeout(function() {
-            let now = document.documentElement.scrollTop;
+            let now = document.body.scrollTop || document.documentElement.scrollTop;
             let speed = (scrollTop - now) / 10;
             speed = speed < 0 ? Math.ceil(speed) : Math.floor(speed);
             scrollToEl(el);
@@ -62,7 +62,12 @@
     // 创建steps的盒子
     function createBox(el, index) {
         const boxInfo = el.dataset;
-        const elPositionInfo = _getElInfo(document.getElementById(boxInfo.bindId));
+        let elPositionInfo;
+        if (boxInfo.bindId) {
+            elPositionInfo = _getElInfo(document.getElementById(boxInfo.bindId));
+        } else {
+            elPositionInfo = _getElInfo(document.getElementsByClassName(boxInfo.bindClass)[0]);
+        }
         // 创建父级，加入boxShadow只显示el的内容
         const parentEl = document.createElement('div');
         parentEl.classList.add('steps-parent', 'steps-hidden');
@@ -90,7 +95,6 @@
         const contentEl = document.createElement('div');
         contentEl.classList.add('steps-content');
         const childrens = el.children;
-        console.log(el.cloneNode(true).childNodes);
         for (let i = 0; i < childrens.length; i++) {
             contentEl.appendChild(childrens[i].cloneNode(true));
         }
@@ -136,7 +140,12 @@
 
     // 显示steps
     function nextIndex(index) {
-        scrollToEl(document.getElementById(_stepsBindEl[0].querySelectorAll('li')[index].dataset.bindId));
+        const dataset = _stepsBindEl[0].querySelectorAll('li')[index].dataset;
+        if (dataset.bindId) {
+            scrollToEl(document.getElementById(dataset.bindId));
+        } else {
+            scrollToEl(document.getElementsByClassName(dataset.bindClass)[0]);
+        }
         document.getElementsByClassName('steps-parent')[index].classList.remove('steps-hidden');
         document.getElementsByClassName('steps-mask')[index].classList.remove('steps-hidden');
     }
