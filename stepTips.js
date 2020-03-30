@@ -190,6 +190,14 @@ const steps = (function() {
         document.getElementsByClassName('steps-show-content')[index].classList.add('steps-hidden')
     }
 
+    // 销毁step
+    function destroyAll() {
+        [].slice.call(document.getElementsByClassName('steps-parent')).forEach(e => e.remove());
+        [].slice.call(document.getElementsByClassName('steps-mask')).forEach(e => e.remove());
+        [].slice.call(document.getElementsByClassName('steps-show-content')).forEach(e => e.remove())
+        document.body.classList.remove('body-no-scroll')
+    }
+
     return {
         bind: function(param, cb, config) {
             _stepsBindEl = document.querySelectorAll(param.el)
@@ -205,12 +213,6 @@ const steps = (function() {
                 throw Error('Not find li element')
             }
         },
-        destroyAll: function() {
-            console.log('destroyAll');
-            [].slice.call(document.getElementsByClassName('steps-parent')).forEach(e => e.remove());
-            [].slice.call(document.getElementsByClassName('steps-mask')).forEach(e => e.remove());
-            [].slice.call(document.getElementsByClassName('steps-show-content')).forEach(e => e.remove())
-            document.body.classList.remove('body-no-scroll')
-        }
+        destroyAll: destroyAll
     }
 })()
